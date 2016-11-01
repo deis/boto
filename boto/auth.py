@@ -309,7 +309,7 @@ class HmacAuthV4Handler(AuthHandler, HmacKeys):
         # values which would otherwise come from the endpoint, e.g.
         # <service>.<region>.amazonaws.com.
         self.service_name = service_name
-        self.region_name = region_name
+        self.region_name = os.getenv('AWS_REGION', region_name)
 
     def _sign(self, key, msg, hex=False):
         if not isinstance(key, bytes):
